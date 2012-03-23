@@ -38,16 +38,6 @@ L.Control.ZoomFS = L.Control.Zoom.extend({
   _isFullscreen: false,
   _enterFullScreen: function(){
     var container = this._map._container;
-    
-    // grab default map container css so we can restore it later
-    this._defaultStyle = {
-      position: L.DomUtil.getStyle(container, 'position') || 'static',
-      width: L.DomUtil.getStyle(container, 'width') || '600px',
-      height: L.DomUtil.getStyle(container, 'height') || '500px',
-      top: L.DomUtil.getStyle(container, 'top') || 0,
-      left: L.DomUtil.getStyle(container, 'left') || 0,
-      borderWidth: L.DomUtil.getStyle(container, 'borderWidth') || 0
-    };
 
     // make it full screen
     container.style.position = 'fixed';
@@ -55,6 +45,8 @@ L.Control.ZoomFS = L.Control.Zoom.extend({
     container.style.height = '100%';
     container.style.top = 0;
     container.style.left = 0;
+    container.style.margin = 0;
+    container.style.padding = 0;
     container.style.borderWidth = 0;
 
 	  // record state
@@ -76,12 +68,7 @@ L.Control.ZoomFS = L.Control.Zoom.extend({
     var container = this._map._container;
 
     // restore original map container css
-    container.style.position = this._defaultStyle.position;
-    container.style.width = this._defaultStyle.width;
-    container.style.height = this._defaultStyle.height;
-    container.style.top = this._defaultStyle.top;
-    container.style.left = this._defaultStyle.left;
-    container.style.borderWidth = this._defaultStyle.borderWidth;
+    container.removeAttribute('style');
 
     // record current state
     this._isFullscreen = false;
