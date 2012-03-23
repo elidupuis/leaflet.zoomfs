@@ -32,9 +32,13 @@ That's it!
 There's no style supplied in this extension, so you'll need to set it up yourself. Basic style is handled internally by *Leaflet.Control.Zoom* so we don't need to do much:
 
     .leaflet-control-full-screen {
+      position: relative;
+      height: 400px;
       background-image: url(your/amazing/icon.png);
       margin-bottom: 5px;
     }
+
+When the user exits fullscreen we are remove the inline style attribute altogether so be sure your base styles have **position:relative;** and a **height:400px;**. These are required by Leaflet.
 
 **Note that your map container should not have inline styles—they will be removed when the user exits fullscreen.**
 
