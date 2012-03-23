@@ -44,6 +44,9 @@
       background-image: url(http://f.cl.ly/items/0W2V081o1h3p013P2v46/icon-fullscreen.png);
       margin-bottom: 5px;
     }
+    
+    /* be sure to have position: relative; and specify a height, as those are required for Leaflet... */
+    #map { height:433px; width:100%; position: relative; }
   </style>
   
   
@@ -79,7 +82,8 @@
       <p>Get all the details at <a href="https://github.com/elidupuis/leaflet.zoomfs">Github</a>.</p>
     </div>
 
-    <div id="map" style="height:433px;"></div>
+    
+    <div id="map"></div>
 
     <h2>Dependencies</h2>
     <p>Leaflet (https://github.com/CloudMade/Leaflet)</p>
