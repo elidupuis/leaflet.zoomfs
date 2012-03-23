@@ -2,6 +2,8 @@
 
 This is a simple extension of [Leaflet.Control.Zoom](http://leaflet.cloudmade.com/reference.html#control-zoom) that adds a fullscreen button above the zoom in and zoom out controls.
 
+Yes...I know...this can be done outside of Leaflet by simply changing the size of the map container element. The reason I built this is so the fullscreen control is fully integrated into the Leaflet interface.
+
 ## Features
 
 - adds a fullscreen button to the default zoom in and zoom out controls
@@ -32,7 +34,7 @@ There's no style supplied in this extension, so you'll need to set it up yoursel
 
 ## Events
 
-There are 2 events you can bind to: **enterFullscreen** and **exitFullscreen**. Not that these events are on the Map object; not ZoomFS.
+There are 2 events you can bind to: **enterFullscreen** and **exitFullscreen**. Note that these events are on the Map object; not ZoomFS.
 
     map.on('enterFullscreen', function(){
       console.log('enterFullscreen');
