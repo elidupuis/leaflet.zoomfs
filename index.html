@@ -4,11 +4,12 @@
   <meta charset='utf-8'>
 
   <title>elidupuis/leaflet.zoomfs @ GitHub</title>
-
+  
+  <!-- page style -->
   <style type="text/css">
     body {
       margin-top: 1.0em;
-      background-color: #056b58;
+      background-color: #444;
       font-family: Helvetica, Arial, FreeSans, san-serif;
       color: #ffffff;
     }
@@ -28,6 +29,35 @@
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
   </style>
+  
+  
+  <!-- Leaflet style. REQUIRED! -->
+  <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+  <!--[if lte IE 8]>
+      <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
+  <![endif]-->
+
+  <!-- styles specific to this extension -->
+  <style>
+    /* there are no internal button styles; you must add your own like this: */
+    .leaflet-control-full-screen {
+      background-image: url(http://f.cl.ly/items/0W2V081o1h3p013P2v46/icon-fullscreen.png);
+      margin-bottom: 5px;
+    }
+  </style>
+  
+  
+  <!-- google analytics -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-358299-22']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </head>
 
 <body>
@@ -42,33 +72,22 @@
         <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
     </div>
 
-    <h1><a href="https://github.com/elidupuis/leaflet.zoomfs">leaflet.zoomfs</a>
-      <span class="small">by <a href="https://github.com/elidupuis">elidupuis</a></span></h1>
+    <h1><a href="https://github.com/elidupuis/leaflet.zoomfs">leaflet.zoomfs</a></h1>
 
     <div class="description">
-      An extension of the default Leaflet zoom control to include a fullscreen button.
+      <p>An extension of the default Leaflet zoom control to include a fullscreen button.</p>
+      <p>Get all the details at <a href="https://github.com/elidupuis/leaflet.zoomfs">Github</a>.</p>
     </div>
 
-    
+    <div id="map" style="height:433px;"></div>
 
-    
-      <h2>Dependencies</h2>
-      <p>Leaflet (https://github.com/CloudMade/Leaflet)</p>
-    
+    <h2>Dependencies</h2>
+    <p>Leaflet (https://github.com/CloudMade/Leaflet)</p>
+  
 
-    
-
-    
-
-    
-      <h2>Authors</h2>
-      <p>Eli Dupuis (elidupuis@gmail.com)<br/>      </p>
-    
-
-    
-      <h2>Contact</h2>
-      <p>Eli Dupuis (elidupuis@gmail.com)<br/>      </p>
-    
+    <h2>Authors</h2>
+    <p>Eli Dupuis (code@elidupuis.com)</p>
+  
 
     <h2>Download</h2>
     <p>
@@ -80,12 +99,46 @@
       by running:
       <pre>$ git clone git://github.com/elidupuis/leaflet.zoomfs</pre>
     </p>
-
+   
     <div class="footer">
       get the source code on GitHub : <a href="https://github.com/elidupuis/leaflet.zoomfs">elidupuis/leaflet.zoomfs</a>
-    </div>
+    </div> 
 
   </div>
+
+
+  <script src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
+  <script src="https://raw.github.com/elidupuis/leaflet.zoomfs/master/leaflet.zoomfs.js"></script>
+  <script>
+
+    // init map without default zoom controls
+    var map = new L.Map('map', { zoomControl:false });
+
+    // create tile layer and center map: default Leaflet stuff
+    var osmTiles = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+        maxZoom: 18
+    });
+    var etown = new L.LatLng(53.52327, -113.53297);
+    map.setView(etown, 13).addLayer(osmTiles);
+
+
+    // create custom zoom control with fullscreen button
+    var zoomFS = new L.Control.ZoomFS();
+
+    // add custom zoom control
+    map.addControl(zoomFS);
+
+    // you can bind to 2 events: enterFullscreen and exitFullscreen
+    // note that these events are on the map object, not the zoomfs object... 
+    map.on('enterFullscreen', function(){
+      if(window.console) window.console.log('enterFullscreen');
+    });
+    map.on('exitFullscreen', function(){
+      if(window.console) window.console.log('exitFullscreen');
+    });
+
+  </script>         
 
 </body>
 </html>
