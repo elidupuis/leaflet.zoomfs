@@ -1,0 +1,70 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Leaflet.ZoomFS demo</title>
+
+  <!-- Leaflet CSS. REQUIRED! -->
+  <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+  <!--[if lte IE 8]>
+      <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
+  <![endif]-->
+  
+  <style>
+    /* there are no internal button styles; you must add your own like this: */
+    .leaflet-control-full-screen {
+      background-image: url(http://f.cl.ly/items/0W2V081o1h3p013P2v46/icon-fullscreen.png);
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <div class="wrap">
+      
+      <div id="map" style="width:600px; height:400px; margin:0 auto;"></div>
+      
+    </div>
+
+  </div>
+  
+  <script src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
+  <script src="leaflet.zoomfs.js"></script>
+  <script>
+    
+    // init map without default zoom controls
+    var map = new L.Map('map', { zoomControl:false });
+    
+    // create tile layer and center map: default Leaflet stuff
+    var osmTiles = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+        maxZoom: 18
+    });
+    var etown = new L.LatLng(53.52327, -113.53297);
+    map.setView(etown, 13).addLayer(osmTiles);
+
+
+    // create custom zoom control with fullscreen button
+    var zoomFS = new L.Control.ZoomFS();
+    
+    // add custom zoom control
+    map.addControl(zoomFS);
+    
+    // you can bind to 2 events: enterFullscreen and exitFullscreen
+    // note that these events are on the map object, not the zoomfs object... 
+    map.on('enterFullscreen', function(){
+      if(window.console) window.console.log('enterFullscreen');
+    });
+    map.on('exitFullscreen', function(){
+      if(window.console) window.console.log('exitFullscreen');
+    });
+  
+  </script>
+  
+</body>
+</html>

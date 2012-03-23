@@ -1,7 +1,7 @@
 /*
  * L.Control.ZoomFS - default Leaflet.Zoom control with an added fullscreen button
  * built to work with Leaflet version 0.3
- * 
+ * https://github.com/elidupuis/leaflet.zoomfs
  */
 L.Control.ZoomFS = L.Control.Zoom.extend({
   includes: L.Mixin.Events,
