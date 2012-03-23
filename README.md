@@ -7,10 +7,14 @@ Yes...I know...this can be done outside of Leaflet by simply changing the size o
 ## Features
 
 - adds a fullscreen button to the default zoom in and zoom out controls
-- retains original map container CSS
 - use ESC button to exit fullscreen
 
 ## Usage
+
+Be sure to include the *leaflet.zoomfs.js* script somewhere after Leaflet is loaded.
+
+    <script src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
+    <script src="leaflet.zoomfs.js"></script>
 
 Do all your normal Leaflet [initialization stuff](http://leaflet.cloudmade.com/examples/quick-start.html), except make sure that you initialize the map *without* the default zoom controls:
 
@@ -31,6 +35,8 @@ There's no style supplied in this extension, so you'll need to set it up yoursel
       background-image: url(your/amazing/icon.png);
       margin-bottom: 5px;
     }
+
+**Note that your map container should not have inline styles—they will be removed when the user exits fullscreen.**
 
 ## Events
 
