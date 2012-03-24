@@ -15,27 +15,49 @@
   <![endif]-->
   
   <style>
-    /* there are no internal button styles; you must add your own like this: */
-    .leaflet-control-full-screen {
+    /**
+     * base map styles
+     * position and height are required by Leaflet
+     * inline styles are removed by Leaflet.Control.ZoomFS so be sure to declare both position and height in your base CSS!
+     */
+    #map {
+      position: relative;
+      height: 433px;
+      width: 700px;
+      margin: 50px auto;
+    }
+    
+    /**
+     * you can customize this class however you need to.
+     * the important rules are position, width, height
+    */
+    #map.leaflet-fullscreen {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    
+    /**
+     * there are no internal button styles; you must add your own like this:
+     */
+    .leaflet-control-fullscreen {
       background-image: url(http://f.cl.ly/items/0W2V081o1h3p013P2v46/icon-fullscreen.png);
       margin-bottom: 5px;
     }
-    
-    /* base map styles - YOUR STYLE */
-    #map { width: 700px; height:433px; margin: 50px auto; }
     
   </style>
 </head>
 <body>
 
-  <div>
-    <div class="wrap">
-      
-      <div id="map"></div>
-      
-    </div>
-
-  </div>
+  <!-- map container -->
+  <div id="map"></div>
   
   <script src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
   <script src="leaflet.zoomfs.js"></script>
