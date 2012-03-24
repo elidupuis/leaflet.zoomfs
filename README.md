@@ -45,9 +45,19 @@ You'll probably want to style the fullscreen button a little bit too. Basic styl
       margin-bottom: 5px;
     }
 
+### Caveat
+
+Note that Leaflet applies an inline style of `position:relative` if you do not have a position declared. Because we are just adding a class (which contains our fullscreen style), I recommend always declaring `position:relative` in your base CSS so you don't have to use `!important` to override the inline style from Leaflet. You also need a height for Leaflet to work properly.
+
+    #map {
+      position: relative;
+      height: 400px;
+    }
+
+
 ## Events
 
-There are 2 events you can bind to: **enterFullscreen** and **exitFullscreen**. Note that these events are triggered on the Map object; not ZoomFS.
+There are 2 events you can bind to: `enterFullscreen` and `exitFullscreen`. Note that these events are triggered on the Map object; not ZoomFS.
 
     map.on('enterFullscreen', function(){
       if(window.console) window.console.log('enterFullscreen');
