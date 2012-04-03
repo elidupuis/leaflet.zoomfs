@@ -53,7 +53,7 @@ No style is applied to the fullscreen button itself. Basic style is handled inte
 
 ### Caveat
 
-Any inline style on your map container will be removed when `exitFullscreen` is triggered. `position:relative` is re-applied automatically as this is required by Leaflet. I strongly recommend you have a position and height declared in your base CSS like so:
+All inline style on your map container will be removed when `exitFullscreen` is triggered. `position:relative` is re-applied automatically if you do not have a position declared in your base styles (as this is required by Leaflet). A height is required by Leaflet core, and it should be declared in your base CSS (not inline) like so:
 
     #map {
       position: relative;
