@@ -23,36 +23,6 @@ Then, instantiate the ZoomFS control and add it to the map:
 
     var zoomFS = new L.Control.ZoomFS(); 
     map.addControl(zoomFS);
-    
-Now we just need to add a little bit of style!
-
-## Style
-
-This extension does not actually make the map fullscreen...it simply applies a class of `leaflet-fullscreen` to the map container. It's up to you to apply the fullscreen state yourself. Luckily, it's very easy:
-
-    #map.leaflet-fullscreen {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-    }
-
-You'll probably want to style the fullscreen button a little bit too. Basic style is handled internally by *Leaflet.Control.Zoom* so you don't need to do much:
-
-    .leaflet-control-fullscreen {
-      background-image: url(your/amazing/icon.png);
-      margin-bottom: 5px;
-    }
-
-### Caveat
-
-Note that Leaflet applies an inline style of `position:relative` if you do not have a position declared. Because we are just adding a class (which contains our fullscreen style), I recommend always declaring `position:relative` in your base CSS so you don't have to use `!important` to override the inline style from Leaflet. You also need a height for Leaflet to work properly.
-
-    #map {
-      position: relative;
-      height: 400px;
-    }
 
 
 ## Events
@@ -67,8 +37,26 @@ There are 2 events you can bind to: `enterFullscreen` and `exitFullscreen`. Note
       if(window.console) window.console.log('exitFullscreen');
     });
 
+
+## Style
+
+This extension applies the following inline styles to make the map fullscreen. We also apply a class of `leaflet-fullscreen` to the map container.
+
+    <div id="map" class="leaflet-container leaflet-fullscreen" style="position: fixed; left: 0px; top: 0px; width: 100%; height: 100%;">
+
+No style is applied to the fullscreen button itself. Basic style is handled internally by *Leaflet.Control.Zoom*, but you'll need to add your own button style:
+
+    .leaflet-control-fullscreen {
+      background-image: url(your/amazing/icon.png);
+      margin-bottom: 5px;
+    }
+
+### Caveat
+
+Any inline style on your map container will be removed when `exitFullscreen` is triggered. `position:relative` is re-applied automatically as this is required by Leaflet.
+
 # Notes
 
-- If you want the fullscreen button below the zoom in and zoom out buttons check the source in *leaflet.zoomfs.js*. Just switch the order the controls are added.
-- This extension was built and tested for Leaflet version 0.3.1. Hopefully it will be updated soon after 0.4 is stable.
-- Ideally some of this code should reside in Leaflet.Map...and maybe some day it will. 
+- This extension was built and tested for Leaflet version 0.3.1.
+- If you want the fullscreen button below the zoom in and zoom out buttons simply switch the order in which the controls are added in *leaflet.zoomfs.js*.
+- Ideally some of this code should reside in Leaflet.Map... I've done some initial work on that here: https://github.com/elidupuis/Leaflet.
