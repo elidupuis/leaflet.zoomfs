@@ -39,10 +39,13 @@ L.Control.ZoomFS = L.Control.Zoom.extend({
     var container = this._map._container;
 
     // apply our fullscreen settings
-    // for (name in this._fullscreenStyle) {
-    //   container.style[ name ] = this._fullscreenStyle[ name ];
-    // };
+    container.style.position = 'fixed';
+		container.style.left = 0;
+		container.style.top = 0;
+		container.style.width = '100%';
+		container.style.height = '100%';
 
+    // store state
     L.DomUtil.addClass(container, 'leaflet-fullscreen');
 	  this._isFullscreen = true;
 
@@ -55,7 +58,11 @@ L.Control.ZoomFS = L.Control.Zoom.extend({
   _exitFullScreen: function(){
     var container = this._map._container;
 
-    // container.removeAttribute('style');
+    // remove fullscreen style; make sure we're still position relative for Leaflet core.
+    container.removeAttribute('style');
+	  container.style.position = 'relative';
+
+    // update state
     L.DomUtil.removeClass(container, 'leaflet-fullscreen');
     this._isFullscreen = false;
 
