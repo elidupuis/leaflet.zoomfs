@@ -8,7 +8,7 @@ You can make a Leaflet map fullscreen programatically by changing the CSS of the
 
 Be sure to include the *leaflet.zoomfs.js* script somewhere after Leaflet is loaded.
 
-    <script src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>
     <script src="leaflet.zoomfs.js"></script>
 
 Do all your normal Leaflet [initialization stuff](http://leaflet.cloudmade.com/examples/quick-start.html), except make sure that you initialize the map *without* the default zoom controls:
@@ -62,6 +62,6 @@ All inline style on your map container will be removed when `exitFullscreen` is 
 
 # Notes
 
-- This extension was built and tested for Leaflet version 0.3.1.
+- This extension was built and tested for Leaflet version 0.4.4. If you need this to work with Leaflet 0.3.1 there's an old version in [tag v0.1](https://github.com/elidupuis/leaflet.zoomfs/tags)
 - If you want the fullscreen button below the zoom in and zoom out buttons simply switch the order in which the controls are added in *leaflet.zoomfs.js*.
 - Ideally some of this code should reside in Leaflet.Map... I've done some initial work on that here: https://github.com/elidupuis/Leaflet.
