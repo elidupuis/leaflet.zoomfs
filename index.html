@@ -10,11 +10,11 @@
 
   <!-- Leaflet CSS. REQUIRED! -->
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.css" />
-  
+
   <!--[if lte IE 8]>
       <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.4.4/leaflet.ie.css" />
   <![endif]-->
-  
+
   <style>
     /**
      * base map styles
@@ -27,7 +27,7 @@
       width: 700px;
       margin: 50px auto;
     }
-    
+
     /**
      * you can customize this class however you need to.
      * the important rules are position, width, height
@@ -44,7 +44,7 @@
       padding: 0;
       border: 0;
     }
-    
+
     /**
      * there are no internal button styles; you must add your own like this:
      */
@@ -52,46 +52,44 @@
       background-image: url(http://f.cl.ly/items/0W2V081o1h3p013P2v46/icon-fullscreen.png);
       margin-bottom: 5px;
     }
-    
+
   </style>
 </head>
 <body>
 
-  <!-- map container -->
-  <div id="map"></div>
-  
-  <script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>
-  <script src="leaflet.zoomfs.js"></script>
-  <script>
-    
-    // init map without default zoom controls
-    var map = new L.Map('map', { zoomControl:false });
-    
-    // create tile layer and center map: default Leaflet stuff
-    var osmTiles = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
-        maxZoom: 18
-    });
-    var etown = new L.LatLng(53.52327, -113.53297);
-    map.setView(etown, 13).addLayer(osmTiles);
+	<!-- map container -->
+	<div id="map"></div>
 
+	<script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>
+	<script src="leaflet.zoomfs.js"></script>
+	<script>
 
-    // create custom zoom control with fullscreen button
-    var zoomFS = new L.Control.ZoomFS();
-    
-    // add custom zoom control
-    map.addControl(zoomFS);
-    
-    // you can bind to 2 events: enterFullscreen and exitFullscreen
-    // note that these events are on the map object, not the zoomfs object... 
-    map.on('enterFullscreen', function(){
-      if(window.console) window.console.log('enterFullscreen');
-    });
-    map.on('exitFullscreen', function(){
-      if(window.console) window.console.log('exitFullscreen');
-    });
-  
-  </script>
-  
+		// init map without default zoom controls
+		var map = new L.Map('map', { zoomControl: false });
+
+		// create tile layer and center map: default Leaflet stuff
+		var osmTiles = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+			maxZoom: 18
+		});
+
+		var etown = new L.LatLng(53.52327, -113.53297);
+		map.setView(etown, 13).addLayer(osmTiles);
+
+		// create custom zoom control with fullscreen button
+		var zoomFS = new L.Control.ZoomFS();
+
+		// add custom zoom control
+		map.addControl(zoomFS);
+
+		// you can bind to 2 events: enterFullscreen and exitFullscreen
+		// note that these events are on the map object, not the zoomfs object...
+		map.on('enterFullscreen', function() {
+			if (window.console) window.console.log('enterFullscreen');
+		});
+		map.on('exitFullscreen', function() {
+			if (window.console) window.console.log('exitFullscreen');
+		});
+	</script>
 </body>
 </html>
