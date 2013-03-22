@@ -14,7 +14,7 @@ L.Control.ZoomFS = L.Control.Zoom.extend({
 		this._map = map;
 		this._isFullscreen = false;
 
-		this._zoomFullScreenButton = this._createButton(null,'Full Screen',
+		this._zoomFullScreenButton = this._createButton('','Full Screen',
 						'leaflet-control-fullscreen ' +
 						partName + ' ' +
 						partName + '-top',
