@@ -4,7 +4,7 @@
   <meta charset='utf-8'>
 
   <title>elidupuis/leaflet.zoomfs @ GitHub</title>
-  
+
   <!-- page style -->
   <style type="text/css">
     body {
@@ -29,12 +29,12 @@
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
   </style>
-  
-  
+
+
   <!-- Leaflet style. REQUIRED! -->
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.css" />
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
   <!--[if lte IE 8]>
-      <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.4.4/leaflet.ie.css" />
+      <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.5.1/leaflet.ie.css" />
   <![endif]-->
 
   <!-- styles specific to this extension -->
@@ -49,7 +49,7 @@
       width: 700px;
       margin: 50px auto;
     }
-    
+
     /**
      * you can apply any special styles required using the .leaflet-fullscreen class
      */
@@ -62,12 +62,12 @@
      */
     .leaflet-control-fullscreen {
       background-image: url(http://f.cl.ly/items/0W2V081o1h3p013P2v46/icon-fullscreen.png);
-      margin-bottom: 5px;
+      /*margin-bottom: 5px;*/
     }
 
   </style>
-  
-  
+
+
   <!-- google analytics -->
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -103,8 +103,10 @@
     <div id="map"></div>
 
     <h2>Dependencies</h2>
-    <p>Leaflet 0.4.4 (https://github.com/CloudMade/Leaflet)</p>
-  
+    <p><a href="https://github.com/CloudMade/Leaflet">Leaflet 0.5.1</a></p>
+
+    <p><small>There are <a href="https://github.com/elidupuis/leaflet.zoomfs/tags">versions of zoomfs</a> that work with legacy versions of Leaflet.</small></p>
+
     <h2>Download</h2>
     <p>
       You can download this project in either
@@ -115,15 +117,15 @@
       by running:
       <pre>$ git clone git://github.com/elidupuis/leaflet.zoomfs</pre>
     </p>
-   
+
     <div class="footer">
       get the source code on GitHub : <a href="https://github.com/elidupuis/leaflet.zoomfs">elidupuis/leaflet.zoomfs</a>
-    </div> 
+    </div>
 
   </div>
 
 
-  <script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>
+  <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
   <script src="https://raw.github.com/elidupuis/leaflet.zoomfs/master/leaflet.zoomfs.js"></script>
   <script>
 
@@ -131,12 +133,17 @@
     var map = new L.Map('map', { zoomControl:false });
 
     // create tile layer and center map: default Leaflet stuff
-    var osmTiles = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+    // var tiles = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+    //     maxZoom: 18
+    // });
+    var tiles = new L.TileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
+        attribution: 'Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.',
         maxZoom: 18
     });
+
     var etown = new L.LatLng(53.52327, -113.53297);
-    map.setView(etown, 13).addLayer(osmTiles);
+    map.setView(etown, 13).addLayer(tiles);
 
 
     // create custom zoom control with fullscreen button
@@ -146,7 +153,7 @@
     map.addControl(zoomFS);
 
     // you can bind to 2 events: enterFullscreen and exitFullscreen
-    // note that these events are on the map object, not the zoomfs object... 
+    // note that these events are on the map object, not the zoomfs object...
     map.on('enterFullscreen', function(){
       if(window.console) window.console.log('enterFullscreen');
     });
@@ -154,7 +161,7 @@
       if(window.console) window.console.log('exitFullscreen');
     });
 
-  </script>         
+  </script>
 
 </body>
 </html>
