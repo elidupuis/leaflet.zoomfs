@@ -31,7 +31,7 @@ L.Control.ZoomFS = L.Control.Zoom.extend({
 						partName + '-bottom',
 						container, this._zoomOut, this);
 
-		map.on('zoomend', this._updateDisabled, this);
+		map.on('zoomend zoomlevelschange', this._updateDisabled, this);
 
 		return container;
 
