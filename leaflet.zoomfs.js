@@ -1,21 +1,37 @@
 /*
  * L.Control.ZoomFS - default Leaflet.Zoom control with an added fullscreen button
- * built to work with Leaflet version 0.4
+ * built to work with Leaflet version 0.5
  * https://github.com/elidupuis/leaflet.zoomfs
  */
 L.Control.ZoomFS = L.Control.Zoom.extend({
 	includes: L.Mixin.Events,
 	onAdd: function (map) {
-		var className = 'leaflet-control-zoom',
-		container = L.DomUtil.create('div', className);
+		var zoomName = 'leaflet-control-zoom',
+				barName = 'leaflet-bar',
+				partName = barName + '-part',
+				container = L.DomUtil.create('div', zoomName + ' ' + barName);
 
 		this._map = map;
 		this._isFullscreen = false;
 
-		this._createButton('Full Screen', 'leaflet-control-fullscreen', container, this.fullscreen, this);
-		// needs to be updated on next Leaflet release according to https://github.com/CloudMade/Leaflet/commit/0bdc48a86442d2287dc3a1085f956e60c2af4975#L1L6
-		this._createButton('Zoom in', className + '-in', container, map.zoomIn, map);
-		this._createButton('Zoom out', className + '-out', container, map.zoomOut, map);
+		this._zoomFullScreenButton = this._createButton('','Full Screen',
+						'leaflet-control-fullscreen ' +
+						partName + ' ' +
+						partName + '-top',
+						container, this.fullscreen, this);
+
+		this._zoomInButton = this._createButton('+', 'Zoom in',
+						zoomName + '-in ' +
+						partName + ' ',
+						container, this._zoomIn,  this);
+
+		this._zoomOutButton = this._createButton('-', 'Zoom out',
+						zoomName + '-out ' +
+						partName + ' ' +
+						partName + '-bottom',
+						container, this._zoomOut, this);
+
+		map.on('zoomend zoomlevelschange', this._updateDisabled, this);
 
 		return container;
 
