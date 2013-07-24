@@ -24,6 +24,12 @@ Then, instantiate the ZoomFS control and add it to the map:
     var zoomFS = new L.Control.ZoomFS(); 
     map.addControl(zoomFS);
 
+If you only want the fullscreen button without zoom controls:
+
+    var zoomFS = new L.Control.ZoomFS({
+            onlyfs: true
+        });
+    map.addControl(zoomFS);
 
 ## Events
 

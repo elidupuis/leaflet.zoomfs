@@ -4,6 +4,9 @@
  * https://github.com/elidupuis/leaflet.zoomfs
  */
 L.Control.ZoomFS = L.Control.Zoom.extend({
+	options: {
+		onlyfs: false
+	},
 	includes: L.Mixin.Events,
 	onAdd: function (map) {
 		var zoomName = 'leaflet-control-zoom',
@@ -20,16 +23,18 @@ L.Control.ZoomFS = L.Control.Zoom.extend({
 						partName + '-top',
 						container, this.fullscreen, this);
 
-		this._zoomInButton = this._createButton('+', 'Zoom in',
-						zoomName + '-in ' +
-						partName + ' ',
-						container, this._zoomIn,  this);
+		if (!this.options.onlyfs) {
+			this._zoomInButton = this._createButton('+', 'Zoom in',
+							zoomName + '-in ' +
+							partName + ' ',
+							container, this._zoomIn,  this);
 
-		this._zoomOutButton = this._createButton('-', 'Zoom out',
-						zoomName + '-out ' +
-						partName + ' ' +
-						partName + '-bottom',
-						container, this._zoomOut, this);
+			this._zoomOutButton = this._createButton('-', 'Zoom out',
+							zoomName + '-out ' +
+							partName + ' ' +
+							partName + '-bottom',
+							container, this._zoomOut, this);
+		}
 
 		map.on('zoomend zoomlevelschange', this._updateDisabled, this);
 
