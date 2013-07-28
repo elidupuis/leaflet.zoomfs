@@ -1,3 +1,5 @@
+**For a plugin that handles fullscreen exclusively see [Leaflet.fullscreen](https://github.com/mapbox/Leaflet.fullscreen).**
+
 # Leaflet.Control.ZoomFS
 
 This is a simple extension of [Leaflet.Control.Zoom](http://leaflet.cloudmade.com/reference.html#control-zoom) that adds a fullscreen button above the zoom in and zoom out controls. 
@@ -63,3 +65,4 @@ All inline style on your map container will be removed when `exitFullscreen` is 
 
 - This extension was built and tested for Leaflet version 0.5.1. If you need this to work with Leaflet 0.4.4 or Leaflet 0.3.1 there are old versions in [tags](https://github.com/elidupuis/leaflet.zoomfs/tags)
 - If you want the fullscreen button below the zoom in and zoom out buttons simply switch the order in which the controls are added in *leaflet.zoomfs.js*.
+
